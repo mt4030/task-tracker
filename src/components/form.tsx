@@ -69,12 +69,7 @@ export function AddTaskDialog({ boardId }) {
   const handleSubmit = (e:any) => {
     e.preventDefault()
 
-    if (!form.title.trim()) {
-      alert("Task title is required!")
-      return
-    }
-
-    dispatch({
+       dispatch({
       type: "ADD_TASK",
       payload: {
         boardId,
@@ -140,8 +135,7 @@ export function AddTaskDialog({ boardId }) {
             <select
               value={form.status}
               onChange={e => setForm({ ...form, status: e.target.value })}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm  cursor-pointer "
-            >
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm  cursor-pointer ">
               <option value="todo">Todo</option>
               <option value="in-progress">In Progress</option>
               <option value="done">Done</option>

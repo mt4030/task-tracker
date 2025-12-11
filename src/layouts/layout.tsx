@@ -1,6 +1,6 @@
 import { SidebarProvider} from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/sideBar"
-import { NavigationMen } from "@/components/navbar"
+import { AppSidebar } from "@/layouts/sideBar"
+import { NavigationMen } from "@/layouts/navbar"
 import { Outlet } from "react-router-dom"
 import { useState } from "react"
 
