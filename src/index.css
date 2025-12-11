@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+body{
+    background-color: aliceblue;
+}
+.navbackground{
+    background-image: url('/public/bird.png'); 
+    background-size: cover;            
+    background-position: center;       
+    background-repeat: no-repeat;      
+
+}
+
+--bubblegum-pink: #ef476fff;
+--golden-pollen: #ffd166ff;
+--emerald: #06d6a0ff;
+--ocean-blue: #118ab2ff;
+--dark-teal: #073b4cff;
