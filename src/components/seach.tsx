@@ -9,7 +9,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";  // Your shadcn path
-import { Search, LayoutDashboard, CheckSquare } from "lucide-react";  // Icons
+import {  LayoutDashboard, CheckSquare } from "lucide-react";  // Icons
 import { useTodo } from "@/context/TodoContext";  // Your hook path
 
 export function CommandMenu() {
