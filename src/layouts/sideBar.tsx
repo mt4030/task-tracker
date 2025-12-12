@@ -168,9 +168,9 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
               ) : (
                 <Button 
                   onClick={() => setShowForm(true)}
-                  className="mt-3 w-50 text-sm bg-[#2496bb] hover:bg-[#107da1] cursor-pointer "
+                  className="mt-3 w-full text-sm bg-[#2496bb] hover:bg-[#107da1] cursor-pointer "
                 >
-                  + Add new board
+                  + Add New Board
                 </Button>
               )}
 

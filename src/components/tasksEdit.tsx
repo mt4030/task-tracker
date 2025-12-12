@@ -15,10 +15,10 @@ import { useTodo } from "@/context/TodoContext"
 import { useState, useEffect } from "react"
 import { Trash2, Plus } from "lucide-react"
 import type { TaskDetailProps,Status } from "../utils/type";
-
+import {useNavigate } from "react-router-dom";
 export function TaskDetail({ task, trigger, boardId }:TaskDetailProps) {
   const { dispatch } = useTodo()
-
+const navigate = useNavigate();
   // Controlled form state
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -91,6 +91,7 @@ export function TaskDetail({ task, trigger, boardId }:TaskDetailProps) {
         type: "DELETE_TASK",
         payload: { boardId, taskId: task.id },
       });
+navigate(-2)
     }
   };
 

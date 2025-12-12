@@ -1,7 +1,6 @@
 import { createContext,useContext, useEffect, useReducer } from "react";
 import { initBoards } from "../data/data";
 import { v4 as uuid } from 'uuid';
-
 import type { ReactNode } from "react";
 import type { Board,TodoAction,TodoContextType,Status} from "../utils/type";
 

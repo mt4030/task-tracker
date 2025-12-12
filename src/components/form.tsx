@@ -38,7 +38,7 @@ interface AddTaskDialogProps {
 
 export function AddTaskDialog({ boardId }: AddTaskDialogProps) {
   const { dispatch } = useTodo()
-
+const [open, setOpen] = useState(false);
   const [form, setForm] = useState<FormState>({
     title: "",
     description: "",
@@ -90,20 +90,20 @@ id: uuid(),
         task,
       },
     })
-
+setOpen(false);
     setForm({ title: "", description: "", status: "todo", subtasks: [] })
     setSubtaskInput("")
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild onClick={() => setOpen(true)} >
 
        <Button
  
   className="cursor-pointer bg-[#2496bb] hover:bg-[#107da1] w-10 sm:w-auto flex items-center justify-center px-2 py-1"
 >
-  <span className="sm:hidden text-lg font-bold">+</span>
+  <span className="sm:hidden text-lg font-bold">+ Task</span>
   <span className="hidden sm:inline">+ Add New Task</span>
 </Button>
       </DialogTrigger>
