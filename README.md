@@ -1,73 +1,162 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# **🗂️ React Task Manager (Boards • Tasks • Subtasks)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A lightweight, fully local, Kanban-style task manager built with **React**, **Context API**, **useReducer**, and **shadcn/ui**.
+Supports multiple boards, tasks, subtasks, status updates, and automatic `localStorage` persistence.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## **✨ Features**
 
-## Expanding the ESLint configuration
+### **🧩 Boards**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* Create new boards
+* Rename boards
+* Delete boards
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### **📌 Tasks**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* Add tasks under each board
+* Edit task title, description, status
+* Delete tasks
+* Real-time syncing to Context + reducer
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### **✅ Subtasks**
+
+* Add subtasks
+* Toggle subtask done/undone
+* Delete subtasks
+* Auto-updates task status:
+
+  * **All done → `done`**
+  * **All not done → `todo`**
+  * **Mixed → `in-progress`**
+
+### **💾 Persistence**
+
+* App state stored in `localStorage`
+* Loads instantly on refresh
+* No backend required
+
+### **🎨 UI**
+
+* Built with **shadcn/ui** components
+* Responsive dialogs & forms
+* Clean, modern, minimal dashboard feel
+
+---
+
+## **🛠️ Tech Stack**
+
+| Tech                         | Usage                        |
+| ---------------------------- | ---------------------------- |
+| **React**                    | UI rendering                 |
+| **Context API + useReducer** | Global state management      |
+| **TypeScript (optional)**    | Type-safe actions & reducers |
+| **shadcn/ui**                | UI components                |
+| **Lucide Icons**             | Icons                        |
+| **localStorage**             | Data persistence             |
+| **uuid**                     | ID generation                |
+
+---
+
+## **📁 Project Structure**
+
+```
+src/
+ ├── components/
+ │    ├── TaskDetail.tsx
+ │    └── ...
+ ├── context/
+ │    └── TodoContext.tsx
+ ├── data/
+ │    └── data.ts (initial demo boards)
+ ├── App.tsx
+ └── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## **⚙️ How State Works**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Everything is centralized in **TodoContext**:
+
+* `ADD_BOARD`
+* `DELETE_BOARD`
+* `RENAME_BOARD`
+* `ADD_TASK`
+* `UPDATE_TASK`
+* `DELETE_TASK`
+* `ADD_SUBTASK`
+* `DELETE_SUBTASK`
+* `TOGGLE_TASK`
+  → recalculates task status automatically
+
+The reducer handles all complex updates immutably.
+
+---
+
+## **📌 Example: Subtask Toggle Logic**
+
+When a subtask is toggled:
+
+```ts
+const updatedSubtasks = task.subtasks.map(st =>
+  st.id === subtaskId ? { ...st, done: !st.done } : st
+);
+
+const calculatedStatus =
+  updatedSubtasks.every(s => s.done)
+    ? 'done'
+    : updatedSubtasks.every(s => !s.done)
+    ? 'todo'
+    : 'in-progress';
 ```
+
+Task status stays in sync with subtask progress automatically.
+
+---
+
+## **🚀 Getting Started**
+
+### 1. Clone the repo
+
+```
+git clone https://github.com/yourname/your-repo.git
+cd your-repo
+```
+
+### 2. Install dependencies
+
+```
+npm install
+```
+
+### 3. Start development server
+
+```
+npm run dev
+```
+
+The app will open at:
+
+```
+http://localhost:5173
+```
+
+
+---
+
+## **🤝 Contributing**
+
+Pull requests are welcome!
+
+---
+
+## **📜 License**
+
+MIT License — free for personal & commercial use.
+
+---
+
