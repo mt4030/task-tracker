@@ -15,7 +15,14 @@ import { useTodo } from "@/context/TodoContext"
 import { useState } from "react"
 import { v4 as uuid } from "uuid"
 import { Trash2} from "lucide-react"
-export function AppSidebar({ showForm, setShowForm}) {
+
+interface AppSidebarProps {
+  showForm: boolean;
+  setShowForm: (v: boolean) => void;
+}
+
+
+export function AppSidebar({ showForm, setShowForm}: AppSidebarProps) {
   const { state, dispatch } = useTodo()
   const [newTitle, setNewTitle] = useState("")
 

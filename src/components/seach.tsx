@@ -8,23 +8,23 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";  // Your shadcn path
-import {  LayoutDashboard, CheckSquare } from "lucide-react";  // Icons
-import { useTodo } from "@/context/TodoContext";  // Your hook path
+} from "@/components/ui/command";  
+import {  LayoutDashboard, CheckSquare } from "lucide-react";  
+import { useTodo } from "@/context/TodoContext";  
 
 export function CommandMenu() {
-  const { state } = useTodo();  // Get boards from state (assume state = Board[])
+  const { state } = useTodo();  
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");  // For filtering
+  const [search, setSearch] = useState("");  //  filtering
   const navigate = useNavigate();
 
-  // Flatten data for search: Add type and extra info
+  // Flatten data for search
   const searchableItems = state.flatMap((board) => [
     {
       type: "board" as const,
       id: board.id,
       title: board.title,
-      boardTitle: null,  // Not needed for boards
+      boardTitle: null,  
     },
     ...board.tasks.map((task) => ({
       type: "task" as const,
@@ -36,7 +36,7 @@ export function CommandMenu() {
     })),
   ]);
 
-  // Filter based on search query (case-insensitive)
+  // Filter based on search query
   const filteredBoards = searchableItems.filter(
     (item) => item.type === "board" && item.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -44,7 +44,7 @@ export function CommandMenu() {
     (item) => item.type === "task" && item.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Cmd+K shortcut to open
+  // Cmd+K shortcut 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -106,7 +106,15 @@ export function CommandMenu() {
                 <CheckSquare className="mr-2 h-4 w-4" />
                 <span>{task.title}</span>
                 <span className="ml-auto text-xs text-muted-foreground">
-                  Task in {task.boardTitle} · {task.status}
+                  {task.type === "task" ? (
+  <div>
+    Task in {task.boardTitle} · {task.status}
+  </div>
+) : (
+  <div>
+    Board: {task.title}
+  </div>
+)}
                 </span>
               </CommandItem>
             ))}

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useTodo } from "@/context/TodoContext";
 import { useMemo } from "react";
 
-
+import type { Task, Subtask } from "../utils/type";
 const Board = () => {
   const { id } = useParams();
   const { state } = useTodo();
@@ -28,7 +28,7 @@ return board.tasks?.filter((t) => t.status === "in-progress") || [];
 return board.tasks?.filter((t) => t.status === "done") || [];
   },[board.tasks]) 
 
- const renderTask = (task) => (
+ const renderTask = (task:Task) => (
   <Link key={task.id} to={`task/${task.id}`}> 
       <div className="bg-white  p-4 rounded-lg shadow hover:shadow-lg transition cursor-pointer mb-4">
         <h2 className="font-semibold text-gray-900 mb-1 wrap-break-word whitespace-normal">{task.title}</h2>
@@ -41,7 +41,7 @@ return board.tasks?.filter((t) => t.status === "done") || [];
             className="h-2 rounded-full bg-blue-500"
             style={{
               width: `${
-                (task.subtasks.filter((s) => s.done).length / task.subtasks.length) * 100
+                (task.subtasks.filter((s:Subtask) => s.done).length / task.subtasks.length) * 100
               }%`,
             }}
           ></div>

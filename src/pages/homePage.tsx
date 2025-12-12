@@ -37,18 +37,7 @@ export default function HomePage() {
     boardsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Categorize boards
-  const boardCategories = {
-  "Not Started": state.filter(
-    (b) => b.tasks.length > 0 && b.tasks.every((t) => t.status === "todo")
-  ),
-  "In Progress": state.filter(
-    (b) => b.tasks.some((t) => t.status === "in-progress")
-  ),
-  "Completed": state.filter(
-    (b) => b.tasks.length > 0 && b.tasks.every((t) => t.status === "done")
-  ),
-};
+
 
 
   return (

@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { AddTaskDialog  } from "@/components/form";
 import { CommandMenu } from "@/components/seach";
 import { Search } from "lucide-react";
+
 export function NavigationMen() {
   const {id}=useParams()
   const location = useLocation();
@@ -63,10 +64,11 @@ const isBoardMain = parts[0] === "board" && parts.length === 2;
   <CommandMenu />
 </div>
    
+{isBoardMain && id && ( 
+  <AddTaskDialog boardId={id} />
+)}
 
-    {isBoardMain && ( 
-        <AddTaskDialog boardId={id}  />)}
- 
+
 
 
     

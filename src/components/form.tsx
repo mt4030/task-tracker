@@ -14,6 +14,7 @@ import { useState } from "react"
 import { useTodo } from "@/context/TodoContext"
 import { v4 as uuid } from "uuid"
 import { Plus, X } from "lucide-react"
+import type { Task,Status} from "@/utils/type"
 interface Subtask {
   id: string;
   title: string;
@@ -23,12 +24,19 @@ interface Subtask {
 interface FormState {
   title: string;
   description: string;
-  status: string;
+  status: Status;
   subtasks: Subtask[];
 }
 
 
-export function AddTaskDialog({ boardId }) {
+
+interface AddTaskDialogProps {
+  boardId: string;
+
+}
+
+
+export function AddTaskDialog({ boardId }: AddTaskDialogProps) {
   const { dispatch } = useTodo()
 
   const [form, setForm] = useState<FormState>({
@@ -65,21 +73,21 @@ export function AddTaskDialog({ boardId }) {
       subtasks: prev.subtasks.filter(s => s.id !== id),
     }))
   }
-
-  const handleSubmit = (e:any) => {
+ const safeStatus: Status = form.status;
+  const handleSubmit = (e:React.FormEvent) => {
     e.preventDefault()
-
+const task:Task={
+id: uuid(),
+          title: form.title.trim(),
+          description: form.description.trim() ,
+          status: safeStatus,
+          subtasks: form.subtasks,
+}
        dispatch({
       type: "ADD_TASK",
       payload: {
         boardId,
-        task: {
-          id: uuid(),
-          title: form.title.trim(),
-          description: form.description.trim() ,
-          status: form.status,
-          subtasks: form.subtasks,
-        },
+        task,
       },
     })
 
@@ -134,7 +142,7 @@ export function AddTaskDialog({ boardId }) {
             <Label>Status</Label>
             <select
               value={form.status}
-              onChange={e => setForm({ ...form, status: e.target.value })}
+              onChange={e => setForm({ ...form, status: e.target.value as Status })}
               className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm  cursor-pointer ">
               <option value="todo">Todo</option>
               <option value="in-progress">In Progress</option>

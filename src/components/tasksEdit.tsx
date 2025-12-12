@@ -14,14 +14,15 @@ import { Label } from "@/components/ui/label"
 import { useTodo } from "@/context/TodoContext"
 import { useState, useEffect } from "react"
 import { Trash2, Plus } from "lucide-react"
+import type { TaskDetailProps,Status } from "../utils/type";
 
-export function TaskDetail({ task, trigger, boardId }) {
+export function TaskDetail({ task, trigger, boardId }:TaskDetailProps) {
   const { dispatch } = useTodo()
 
   // Controlled form state
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [status, setStatus] = useState("todo")
+  const [status, setStatus] = useState<Status>("todo")
   const [newSubtask, setNewSubtask] = useState("")
    const [open, setOpen] = useState(false);
 
@@ -37,7 +38,7 @@ export function TaskDetail({ task, trigger, boardId }) {
   }, [open])
 
   // Toggle subtask checkbox
-  const toggleSubtask = (id) => {
+  const toggleSubtask = (id:string) => {
     dispatch({
       type: "TOGGLE_TASK",
       payload: { boardId, taskId: task.id, subtaskId: id },
@@ -45,7 +46,7 @@ export function TaskDetail({ task, trigger, boardId }) {
   }
 
   // Delete a subtask
-  const deleteSubtask = (subtaskId) => {
+  const deleteSubtask = (subtaskId:string) => {
     dispatch({
       type: "DELETE_SUBTASK",
       payload: { boardId, taskId: task.id, subtaskId },
@@ -77,7 +78,7 @@ export function TaskDetail({ task, trigger, boardId }) {
         taskId: task.id,
         updates: {
           title: title.trim(),
-          description: description.trim() || null,
+          description: description.trim() || '',
           status,
         },
       },
@@ -128,7 +129,7 @@ export function TaskDetail({ task, trigger, boardId }) {
             <Label className="mb-3">Status</Label>
             <select
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value as Status)}
               className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
             >
               <option value="todo">Todo</option>

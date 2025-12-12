@@ -1,5 +1,5 @@
 import { TaskDetail  } from "@/components/tasksEdit";
-import {   useParams,useNavigate } from "react-router-dom";
+import {useParams,useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTodo } from "@/context/TodoContext";
 
@@ -22,7 +22,8 @@ const navigate = useNavigate();
 
 
 
-const handleToggle=(subtaskId)=>{
+const handleToggle=(subtaskId:any)=>{
+  if (!id || !taskId) return; 
 dispatch({type:'TOGGLE_TASK', payload:{boardId:id,taskId,subtaskId}})
 
 }
@@ -86,13 +87,11 @@ dispatch({type:'TOGGLE_TASK', payload:{boardId:id,taskId,subtaskId}})
           <button className="text-[#118ab2ff] hover:underline" onClick={() => navigate(-1)}>
      ← Back to Tasks
           </button>
-<TaskDetail
+ {id && (<TaskDetail
   task={task}
   boardId={id} 
-  trigger={
-    <Button className="bg-[#118ab2ff] hover:bg-[#073b4cff] text-white">Edit Task</Button>
-  }
-/>
+  trigger={<Button className="bg-[#118ab2ff] hover:bg-[#073b4cff] text-white">Edit Task</Button>}
+/>)}
 
         </div>
       </div>

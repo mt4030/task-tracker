@@ -3,63 +3,12 @@ import { initBoards } from "../data/data";
 import { v4 as uuid } from 'uuid';
 
 import type { ReactNode } from "react";
+import type { Board,TodoAction,TodoContextType,Status} from "../utils/type";
 
 
-export interface Subtask {
-  id: string;
-  title: string;
-  done: boolean;
-}
-
-export interface Task {
-  id: string;
-  title: string;
-  description: string;
-  status: "todo" | "in-progress" | "done";
-  subtasks: Subtask[];
-}
-
-export interface Board {
-  id: string;
-  title: string;
-  tasks: Task[];
-}
 
 
-export type TodoAction =
-  | { type: "ADD_BOARD"; payload: { id: string; title: string } }
-  | { type: "DELETE_BOARD"; payload: { id: string } }
-  | { type: "RENAME_BOARD"; payload: { id: string; title: string } }
-  | {
-      type: "ADD_TASK"
-      payload: { boardId: string; task: Task }
-    }
-  | {
-      type: "UPDATE_TASK"
-      payload: { boardId: string; taskId: string; updates: Partial<Task> }
-    }
-  | {
-      type: "DELETE_TASK"
-      payload: { boardId: string; taskId: string }
-    }
-  | {
-      type: "ADD_SUBTASK"
-      payload: { boardId: string; taskId: string; subtaskTitle: string }
-    }
-  | {
-      type: "DELETE_SUBTASK"
-      payload: { boardId: string; taskId: string; subtaskId: string }
-    }| {
-      type: "TOGGLE_TASK"
-      payload: { boardId: string; taskId: string; subtaskId: string }
-    }
 
-
-////context
-export interface TodoContextType {
-  state: Board[];
-  dispatch: React.Dispatch<TodoAction>;
-}
 export const TodoContext=createContext<TodoContextType|null>(null)
 
 
@@ -186,7 +135,7 @@ task.id===taskId?(()=>{
   const updatedSubtasks =task.subtasks.map(sub=>
     sub.id===subtaskId?{...sub,done:!sub.done}:sub
   )
-  const calculatedStatus =updatedSubtasks.every(s=>s.done)?'done':updatedSubtasks.every(s=>!s.done)?'todo':'in-progress';
+  const calculatedStatus:Status =updatedSubtasks.every(s=>s.done)?'done':updatedSubtasks.every(s=>!s.done)?'todo':'in-progress';
    return { ...task, subtasks: updatedSubtasks, status: calculatedStatus };
 })():task)}:board)
 }
