@@ -66,7 +66,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
 </svg>
 
 <Link  to={'/home'}>
-             <img src={sidlogo} className="w-13 mx-10" alt="logo" />
+             <img src={sidlogo} className="w-13 mx-15 sm:mx-10" alt="logo" />
 </Link>
           <SidebarTrigger 
   className="
