@@ -91,7 +91,7 @@ const navigate = useNavigate();
         type: "DELETE_TASK",
         payload: { boardId, taskId: task.id },
       });
-navigate(-2)
+navigate(-1)
     }
   };
 
