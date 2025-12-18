@@ -42,7 +42,7 @@ export default function HomePage() {
     animateScale: true,
     animateRotate: true,
     duration: 1200,
-    easing: "easeOutQuart", // ✅ this string is allowed by Chart.js
+    easing: "easeOutQuart",
   },
   plugins: {
     legend: { position: "bottom" },
@@ -155,7 +155,7 @@ export default function HomePage() {
                     whileHover={{ scale: 1.05, x: 5 }}
                     transition={{ type: "spring", stiffness: 110, damping: 14, delay: i * 0.08 }}
                     className="p-3 bg-white/30 dark:bg-black/20 rounded-lg shadow-sm cursor-pointer transition"
-                    onClick={() => navigate(`/board/${t.boardId}/task/${t.id}`)}
+                    onClick={() => navigate(`/home/board/${t.boardId}/task/${t.id}`)}
                   >
                     <span className="font-medium">{t.title}</span>
                     <span className="text-sm text-[#E5F0FF] dark:text-gray-400 block">
