@@ -2,7 +2,7 @@
 
 
 body{
-    background-color: aliceblue;
+    background-color: #000E24;
 }
 .navbackground{
     background-image: url('/public/bird.png'); 
@@ -12,8 +12,3 @@ body{
 
 }
 
---bubblegum-pink: #ef476fff;
---golden-pollen: #ffd166ff;
---emerald: #06d6a0ff;
---ocean-blue: #118ab2ff;
---dark-teal: #073b4cff;

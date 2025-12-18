@@ -10,12 +10,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
-import { NavLink } from "react-router-dom"
+import { NavLink ,Link } from "react-router-dom"
 import { useTodo } from "@/context/TodoContext"
 import { useState } from "react"
 import { v4 as uuid } from "uuid"
 import { Trash2} from "lucide-react"
-
+import sidlogo from '../assets/sidbar.png'
 interface AppSidebarProps {
   showForm: boolean;
   setShowForm: (v: boolean) => void;
@@ -44,13 +44,13 @@ const handleDelete=(id:string)=>{
 dispatch({type:'DELETE_BOARD', payload:{id:id}})
 }
   return (
-    <Sidebar className="bg-black">
-      <SidebarContent className="bg-[#073b4cff] pl-1  font-semibold ">
+    <Sidebar className="">
+      <SidebarContent className="bg-[#001433] pl-1 font-semibold ">
 
         <SidebarGroup>
 
-          {/* HEADER WITH CLOSE BUTTON */}
-          <div className="flex items-center justify-between mb-8 mt-5 pr-4 ">
+        
+          <div className="flex items-center justify-between mb-8 mt-5 pr-4  ">
             
          
             <div className="flex gap-2 items-center ">
@@ -65,18 +65,18 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
 </svg>
 
-
-              <h1 className="text-amber-50 text-3xl font-bold">TaskNest</h1>
-
+<Link  to={'/home'}>
+             <img src={sidlogo} className="w-13 mx-10" alt="logo" />
+</Link>
           <SidebarTrigger 
   className="
      w-10 h-10
     rounded-lg cursor-pointer
     border border-white/15 
-    text-white/70
+    text-white
     hover:text-white 
-    hover:bg-[#118ab2]/30
-    active:bg-[#118ab2]/50
+    hover:bg-[#0066FF]/30
+    active:bg-[#0066FF]/50
     transition-all 
     duration-200
     flex items-center justify-center
@@ -99,15 +99,15 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
 
           </div>
 
-          {/* BOARD LIST */}
-          <SidebarGroupLabel className="text-amber-50 font-bold mb-2">
+      
+          <SidebarGroupLabel className="text-white font-bold mb-2">
             BOARDS ({state.length})
           </SidebarGroupLabel>
 
           <SidebarGroupContent>
             <SidebarMenu className="flex flex-col gap-1  ">
 
-              {/* BOARD ITEMS */}
+            
               {state.map((board) => (
   <SidebarMenuItem key={board.id}>
    <div className="flex justify-between items-center "> 
@@ -117,7 +117,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
     `px-2 py-1 w-full block rounded transition  
      ${isActive 
         ? "bg-[#118ab2]/20 text-white w-54  font-semibold"     
-        : "text-[#909db0] hover:text-blue-950"      
+        : "text-white/90 hover:text-blue-950"      
      }`
   }
 >
@@ -129,14 +129,14 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
          
 
     </SidebarMenuButton></NavLink>  
-    <Trash2 onClick={()=>handleDelete(board.id)} className="  h-5 w-6 text-[#ef476f] hover:text-[#b41e41] cursor-pointer" /> 
+    <Trash2 onClick={()=>handleDelete(board.id)} className="  h-5 w-6 text-white hover:text-[#b41e41] cursor-pointer" /> 
     </div>
     
   </SidebarMenuItem>
 ))}
 
 
-              {/* ADD NEW BOARD FORM */}
+            
               {showForm ? (
                 <form
                   onSubmit={handleSubmit}
@@ -154,7 +154,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
                   />
 
                   <div className="flex gap-2">
-                    <Button type="submit" className="flex-1 bg-[#118ab2ff] hover:bg-[#107da1] cursor-pointer ">Save</Button>
+                    <Button type="submit" className="flex-1 bg-[#0066FF] hover:bg-[#3385FF] cursor-pointer ">Save</Button>
                     <Button
                       type="button"
                       variant="outline"
@@ -168,7 +168,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
               ) : (
                 <Button 
                   onClick={() => setShowForm(true)}
-                  className="mt-3 w-full text-sm bg-[#2496bb] hover:bg-[#107da1] cursor-pointer "
+                  className="mt-3 w-full text-sm bg-[#0066FF] hover:bg-[#3385FF] cursor-pointer "
                 >
                   + Add New Board
                 </Button>

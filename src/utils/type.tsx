@@ -1,6 +1,4 @@
 
-
-
 export type TodoAction =
   | { type: "ADD_BOARD"; payload: { id: string; title: string } }
   | { type: "DELETE_BOARD"; payload: { id: string } }

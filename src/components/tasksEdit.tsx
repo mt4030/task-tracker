@@ -110,7 +110,7 @@ navigate(-2)
           {/* Title */}
           <div>
             <Label className="mb-3">Title</Label>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+            <Input className="bg-[#E5F0FF]" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
 
           {/* Description */}
@@ -121,7 +121,7 @@ navigate(-2)
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
               placeholder="Add details..."
-              className="w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-sm resize-none focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full rounded-lg border border-gray-300 bg-[#E5F0FF] px-3 py-2 text-sm resize-none focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
 
@@ -131,7 +131,7 @@ navigate(-2)
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as Status)}
-              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-input bg-[#E5F0FF]  px-3 py-2 text-sm"
             >
               <option value="todo">Todo</option>
               <option value="in-progress">In Progress</option>
@@ -157,7 +157,7 @@ navigate(-2)
                     type="checkbox"
                     checked={subtask.done}
                     onChange={() => toggleSubtask(subtask.id)}
-                    className="h-5 w-5 rounded border-gray-300 text-blue-600"
+                    className="h-5 w-5 rounded border-gray-300 bg-[#E5F0FF] text-blue-600"
                   />
 
                   <span
@@ -185,7 +185,7 @@ navigate(-2)
                 onChange={(e) => setNewSubtask(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addSubtask()}
                 placeholder="New subtask..."
-                className="flex-1"
+                className="flex-1 bg-[#E5F0FF]"
               />
               <Button
                 onClick={addSubtask}
@@ -211,7 +211,7 @@ navigate(-2)
 
             <DialogClose asChild>
               <Button
-                className="bg-[#118ab2ff] hover:bg-[#073b4cff]"
+                className="bg-[#0066FF] hover:bg-[#3385FF]"
                 onClick={handleSave}
               >
                 Save Changes

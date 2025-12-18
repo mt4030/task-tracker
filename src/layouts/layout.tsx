@@ -22,7 +22,7 @@ const [showBoardForm, setShowBoardForm] = useState(false)
        
     </div>
 
- <main className="flex-1">
+ <main className="flex-1 overflow-x-hidden ">
   <NavigationMen  />
   <div className="max-w-6xl mx-auto p-6">
     <Outlet />

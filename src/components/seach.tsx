@@ -44,7 +44,7 @@ export function CommandMenu() {
     (item) => item.type === "task" && item.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Cmd+K shortcut 
+  // Cmd+K shortcut a
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -72,7 +72,9 @@ export function CommandMenu() {
       <CommandInput
         placeholder="Search boards & tasks..."
         value={search}
-        onValueChange={setSearch}  // Real-time filter
+        onValueChange={setSearch}
+      
+    
       />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
