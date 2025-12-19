@@ -2,7 +2,7 @@
 import {  createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Home from './pages/homePage'
-import Errorpage from './pages/errorPage'
+import ErrorPage from './pages/ErrorPage';
 import Layout from './layouts/layout'
 import Board from './pages/boardTasks'
 import Todoprovider from './context/TodoContext'
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <FirstVisitGate />, 
-    errorElement: <Errorpage />,
+    errorElement: <ErrorPage />,
   },
   {
     element: <Layout />,
