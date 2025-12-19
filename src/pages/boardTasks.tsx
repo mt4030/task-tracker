@@ -12,7 +12,7 @@ const Board = () => {
 
   if (!board)
     return (
-      <div className="flex items-center justify-center h-screen text-gray-500 text-xl font-semibold">
+      <div className="flex items-center justify-center h-screen text-[#E5F0FF] text-xl font-semibold">
         Board not found
       </div>
     );
@@ -54,7 +54,7 @@ return board.tasks?.filter((t) => t.status === "done") || [];
 
   return (
     <div className=" min-h-screen w-full md:p-10 flex flex-col">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12 ">Board Name : {board.title}</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-[#E5F0FF] mb-12 ">Board Name : {board.title}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
         {/* TODO Column */}

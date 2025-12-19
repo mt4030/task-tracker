@@ -11,7 +11,7 @@ export default function FirstVisitGate() {
 
   const handleGuest = () => {
     localStorage.setItem(STORAGE_KEY, "guest");
-    navigate("/home"); // main entrance
+    navigate("/home"); 
   };
 
   const handleLogin = () => {
@@ -38,7 +38,7 @@ export default function FirstVisitGate() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="relative z-10 flex min-h-screen w-screen flex-col items-center justify-center px-6 text-white"
+          className="relative z-10 flex min-h-screen w-screen pt-25 flex-col items-center justify-center px-6 text-white"
         >
           <h1 className="mb-2 text-3xl font-semibold">TaskNest</h1>
           <p className="mb-10 max-w-sm text-center text-sm text-white/80">

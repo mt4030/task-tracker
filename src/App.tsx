@@ -2,12 +2,12 @@
 import {  createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Home from './pages/homePage'
-import Errorpage from './pages/errorpage'
+import Errorpage from './pages/errorPage'
 import Layout from './layouts/layout'
-import Board from './pages/boread'
+import Board from './pages/boardTasks'
 import Todoprovider from './context/TodoContext'
 import TaskDiPage from './pages/taskdetailpage'
-import FirstVisitGate from './pages/starter'
+import FirstVisitGate from './pages/FirstvisitGate'
 import  {AuthProvider}  from './context/AuthContext'
 
 //////routes

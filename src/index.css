@@ -4,11 +4,4 @@
 body{
     background-color: #000E24;
 }
-.navbackground{
-    background-image: url('/public/bird.png'); 
-    background-size: cover;            
-    background-position: center;       
-    background-repeat: no-repeat;      
-
-}
 

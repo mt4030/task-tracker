@@ -56,7 +56,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
             <div className="flex gap-2 items-center ">
              <svg
   xmlns="http://www.w3.org/2000/svg"
-  className="w-8 h-8 text-blue-300 hover:scale-125 hover:animate-spin transition-transform duration-500"
+  className="w-10 h-10 text-blue-300  hover:scale-125 hover:animate-spin transition-transform duration-500"
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"
@@ -66,7 +66,7 @@ dispatch({type:'DELETE_BOARD', payload:{id:id}})
 </svg>
 
 <Link  to={'/home'}>
-             <img src={sidlogo} className="w-13 mx-15 sm:mx-10" alt="logo" />
+             <img src={sidlogo} className="w-10 mx-15 sm:mx-10" alt="logo" />
 </Link>
           <SidebarTrigger 
   className="
